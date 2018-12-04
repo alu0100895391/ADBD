@@ -1,0 +1,27 @@
+CREATE OR REPLACE FUNCTION function()
+RETURNS TRIGGER AS $DISMINUYE_CANTIDAD$
+BEGIN
+IF EXISTS 
+	(SELECT 1
+	 FROM PRODUCTO
+	  WHERE stock >= NEW.cantidad_prod
+		   AND codigo = NEW.producto_codigo
+	)
+
+THEN
+	UPDATE PRODUCTO
+SET stock = stock-NEW.cantidad_prod
+	WHERE NEW.producto_codigo= codigo;
+	RETURN NEW;
+END IF;
+RAISE EXCEPTION 'No hay stock suficiente';
+RETURN NULL;
+END;
+
+$DISMINUYE_CANTIDAD$ language plpgsql;
+
+
+CREATE TRIGGER DISMINUYE_CANTIDAD
+		BEFORE INSERT ON PROD_EMPLEADO_CLIENTE
+		FOR EACH ROW
+		EXECUTE PROCEDURE function();
