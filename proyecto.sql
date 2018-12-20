@@ -1,14 +1,14 @@
 CREATE TYPE direccion AS
-(   Nombre_Via VARCHAR(50),
-    Provincia VARCHAR(50),
-    Poblacion VARCHAR(50),
-    CP       INT,
-    Tipo_Via   VARCHAR(50)
+(   Nombre_Via text,
+    Provincia text,
+    Poblacion text,
+    CP       integer,
+    Tipo_Via   text
 );
 
 CREATE TABLE JefeProyecto(
     Cod_JefeProyecto integer,
-    Nombre VARCHAR(100),
+    Nombre text,
     Direccion direccion,
     Telefono integer,
     PRIMARY KEY (Cod_JefeProyecto),
@@ -32,7 +32,7 @@ CREATE TABLE Poligono(
 
 CREATE TABLE Proyecto(
     Cod_Proyecto integer,
-    Nombre VARCHAR(50),
+    Nombre text,
     PRIMARY KEY (Cod_Proyecto)
 );
 
@@ -42,7 +42,7 @@ CREATE TABLE Plano(
     Cod_Plano  integer,
     Fecha_Entrega Date,
     Arquitectos text[],
-    Dibujo_Plano boolean,
+    Dibujo_Plano integer,
     Num_Figuras integer,
     PRIMARY KEY (Cod_Plano)
 );
@@ -51,8 +51,8 @@ CREATE TABLE Plano(
 
 CREATE TYPE puntos AS
 (
-    Coord_X       INT,
-    Coord_Y       INT
+    Coord_X       integer,
+    Coord_Y       integer
 );
 
 CREATE TABLE Linea(
@@ -67,6 +67,4 @@ CREATE TABLE Linea(
 
 
 
-/*cuales son aquellas cosas con las que me identifico, crear uno se que
-identificar una comunidad de practicas
-a largo plazp esto seguirá vido y que elementos ayudará  que essto no se que*/
+
